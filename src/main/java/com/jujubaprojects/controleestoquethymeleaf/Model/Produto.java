@@ -20,7 +20,7 @@ public class Produto {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
     private String nome;
     private String descricao;
     private double preco;
@@ -44,8 +44,7 @@ public class Produto {
 
 
 
-    public Produto(UUID id, String nome, String descricao, double preco, int qntEstoque,
-            com.jujubaprojects.controleestoquethymeleaf.Model.CategoriaProd categoria, Fornecedor fornecedor) {
+    public Produto(int id, String nome, String descricao, double preco, int qntEstoque,CategoriaProd categoria, Fornecedor fornecedor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -55,11 +54,11 @@ public class Produto {
         this.fornecedor = fornecedor;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

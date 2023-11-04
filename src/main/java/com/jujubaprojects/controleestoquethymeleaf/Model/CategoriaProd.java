@@ -17,10 +17,10 @@ public class CategoriaProd {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
     private String nome;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categotia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Categoria")
     private List<Produto>produtos;
 
 public CategoriaProd(){
@@ -28,17 +28,17 @@ public CategoriaProd(){
 }
     
 
-    public CategoriaProd(UUID id, String nome, List<Produto> produtos) {
+    public CategoriaProd(int id, String nome, List<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.produtos = produtos;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -22,118 +22,80 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
     private String nome;
     private String email;
     private String senha;
+    private String tipo;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+   /*  @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_tipos" , joinColumns = @JoinColumn(name = "usuarios_is"),
     inverseJoinColumns = @JoinColumn(name = "tipo_id"))
-    private List <Tipo> tipos;
-
-    private Set<String> roles = new HashSet<>();
-
+    private List <Tipo> tipos;*/
 
 
 
 public Usuario(){
 }
-    
 
-  
-
-    public Usuario(UUID id, String nome, String email, String senha, List<Tipo> tipos, Set<String> roles) {
+public Usuario(int id, String nome, String email, String senha, String tipo) {
     this.id = id;
     this.nome = nome;
     this.email = email;
     this.senha = senha;
-    this.tipos = tipos;
-    this.roles = roles;
+    this.tipo = tipo;
+}
+
+public int getId() {
+    return id;
+}
+
+public void setId(int id) {
+    this.id = id;
+}
+
+public String getNome() {
+    return nome;
+}
+
+public void setNome(String nome) {
+    this.nome = nome;
+}
+
+public String getEmail() {
+    return email;
+}
+
+public void setEmail(String email) {
+    this.email = email;
+}
+
+public String getSenha() {
+    return senha;
+}
+
+public void setSenha(String senha) {
+    this.senha = senha;
+}
+
+public String getTipo() {
+    return tipo;
+}
+
+public void setTipo(String tipo) {
+    this.tipo = tipo;
 }
 
 
-    public UUID getId() {
-        return id;
+public boolean permitirAcesso(Usuario usuario){
+
+    if(email.endsWith("@admin12345")){
+        return this.tipo.equalsIgnoreCase("admin");
+    }else{
+        return this.tipo.equalsIgnoreCase("comum");
     }
 
-
-
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-
-
-
-    public String getNome() {
-        return nome;
-    }
-
-
-
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-
-
-
-    public String getEmail() {
-        return email;
-    }
-
-
-
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-
-
-    public String getSenha() {
-        return senha;
-    }
-
-
-
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-
-
-
-    public List<Tipo> getTipos() {
-        return tipos;
-    }
-
-
-
-
-    public void setTipos(List<Tipo> tipos) {
-        this.tipos = tipos;
-    }
-
-
-
-
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
-    }
-
-
-
-
-    public String getRoles() {
-        return null;
-    }
-
-
+}
+  
 
 }

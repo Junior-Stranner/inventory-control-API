@@ -16,9 +16,9 @@ import jakarta.persistence.Table;
 @Table(name = "movimentacaoprods")
 public class MovimentacaoProd {
 
-         @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
     private String tipo;
     private int quantidade;
     private LocalDate data = LocalDate.now();
@@ -32,7 +32,7 @@ public class MovimentacaoProd {
         
     }
 
-    public MovimentacaoProd(UUID id, String tipo, int quantidade, LocalDate data, int nota, Produto produto) {
+    public MovimentacaoProd(int id, String tipo, int quantidade, LocalDate data, int nota, Produto produto) {
         this.id = id;
         this.tipo = tipo;
         this.quantidade = quantidade;
@@ -41,11 +41,11 @@ public class MovimentacaoProd {
         this.produto = produto;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
