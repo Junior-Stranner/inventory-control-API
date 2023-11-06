@@ -85,17 +85,6 @@ public String getTipo() {
 public void setTipo(String tipo) {
     this.tipo = tipo;
 }
-
-
-public boolean permitirAcesso(Usuario usuario){
-
-    if(email.endsWith("@admin12345")){
-        return this.tipo.equalsIgnoreCase("admin");
-    }else{
-        return this.tipo.equalsIgnoreCase("comum");
-    }
-
-}
   
 
 }
