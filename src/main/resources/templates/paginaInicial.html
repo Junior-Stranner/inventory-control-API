@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+  <title>Página Inicial</title>
+</head>
+
+<body>
+  <form method="POST" action="/paginaInicial">
+    <div class="container">
+      <h1>Seja Bem Vindo Administrador</h1>
+      <div class="nav-bar">
+        <div>
+          <h4>Usuários</h4>
+          <button class="botao-colorido"><a href="/cadastroUsuario">Cadastrar Usuário/s</a></button>
+        </div>
+        <div>
+          <h4>Tipo/s de Usuário/s</h4>
+          <button class="botao-colorido"><a href="/listaUsuario">Lista de Usuário/s</a></button>
+        </div>
+        <div>
+          <h4>Produtos</h4>
+          <button class="botao-colorido"><a href="/cadastroProduto">Cadastrar Produtos</a></button>
+        </div>
+        <div>
+          <h4>Fornecedores</h4>
+          <button class="botao-colorido"><a href="/cadastroFornecedor">Cadastrar Fornecedores</a></button>
+        </div>
+        <div>
+          <h4>Movimentação de Produtos</h4>
+          <button class="botao-colorido"><a href="/cadastroMovimentacao">Cadastrar Movimentação Produtos</a></button>
+        </div>
+      </div>
+    </div>
+    
+  </form>
+</body>
+
+</html>
