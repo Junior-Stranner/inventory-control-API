@@ -8,5 +8,7 @@ import com.jujubaprojects.controleestoquethymeleaf.Model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository <Usuario, Integer>{
+
+    String findByNome(String nome);
     
 }

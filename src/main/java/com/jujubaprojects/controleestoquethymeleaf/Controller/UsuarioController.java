@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -58,16 +59,20 @@ public class UsuarioController {
     }
 
     @PostMapping("/verificaLoginAdm")
-    public String verificaLoginAdm(Usuario usuario){
-     List<Usuario> usuarios = usuarioRepository.findAll();
-     for (Usuario usuarioLogAdm : usuarios) {
-        if (usuarioLogAdm.getEmail().equals(usuario.getEmail())
-         && usuarioLogAdm.getSenha().equals(usuario.getSenha())) {
+    public String verificaLoginAdm(Usuario usuario, Model model) {
 
-               return "redirect:/paginaInicial";
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        System.out.println("Comparando com: " + usuario.getEmail() + " / " + usuario.getSenha());
+
+        for (Usuario usuarioLogAdm : usuarios) {
+            if (usuarioLogAdm.getEmail().equals(usuario.getEmail()) && usuarioLogAdm.getSenha().equals(usuario.getSenha())) {
+                String nomeAdm = usuarioLogAdm.getNome();
+                System.out.println("Login bem-sucedido para: " + nomeAdm);
+           //     ((RedirectAttributes) model).addAttribute("nomeAdm", nomeAdm);
+                return "redirect:/paginaInicial";
             }
         }
-    return "redirect:/loginAdm";
+        return "redirect:/loginAdm";
     }
 
     @GetMapping("/listaUsuario")
@@ -76,8 +81,74 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioRepository.findAll();
         mv.addObject("usuarios", usuarios);
         return mv;
-
     }
+
+    @GetMapping("/editarUsuario/{id}")
+    public ModelAndView editar(@PathVariable("id") int id) {
+        ModelAndView mv = new ModelAndView("cadastroUsuario");
+        Usuario usuario = usuarioRepository.findById(id).get();
+        mv.addObject("usuario", usuario);
+        return mv;
     
+   }
+
+   @GetMapping("/excluirUsuario/{id}")
+   public String excluir(@PathVariable("id") int id) {
+       usuarioRepository.deleteById(id);
+       return "redirect:/listaUsuario";
+   }
+
+/*
+  Done with the ADM 
+  Terminei com o ADM
+ * ======================================================================================================
+ * irei fazer o mesmo agr para o usuario comum 
+ * doing the same now with the common user
+ */
+
+  @GetMapping("/loginComum")
+    public String login(){
+        return "loginComum";
+    }
+
+    @PostMapping("/verificaLoginComum")
+    public String verificaLoginAdm(Usuario usuario) {
+
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        System.out.println("Comparando com: " + usuario.getEmail() + " / " + usuario.getSenha());
+
+        for (Usuario usuarioLogComum : usuarios) {
+            if (usuarioLogComum.getEmail().equals(usuario.getEmail()) && usuarioLogComum.getSenha().equals(usuario.getSenha())) {
+                String nomeComum = usuarioLogComum.getNome();
+                System.out.println("Login bem-sucedido para: " + nomeComum);
+           //     ((RedirectAttributes) model).addAttribute("nomeAdm", nomeAdm);
+                return "redirect:/paginaInicial";
+            }
+        }
+        return "redirect:/loginComum";
+    }
+
+  /*   @GetMapping("/listaUsuario")
+    public ModelAndView listarUsuariosComums(){
+        ModelAndView mv = new ModelAndView("listaUsuario");
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        mv.addObject("usuarios", usuarios);
+        return mv;
+    }*/
+
+    @GetMapping("/editarUsuarioComum/{id}")
+    public ModelAndView editarComum(@PathVariable("id") int id) {
+        ModelAndView mv = new ModelAndView("cadastroUsuario");
+        Usuario usuario = usuarioRepository.findById(id).get();
+        mv.addObject("usuario", usuario);
+        return mv;
+    
+   }
+
+   @GetMapping("/excluirUsuarioComum/{id}")
+   public String excluirComum(@PathVariable("id") int id) {
+       usuarioRepository.deleteById(id);
+       return "redirect:/listaUsuario";
+   }
 
 }

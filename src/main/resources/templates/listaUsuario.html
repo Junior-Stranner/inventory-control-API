@@ -48,29 +48,59 @@
 
 <body>
     <div class="container">
-        <h1>Lista de Usuários</h1>
+        <h1>Lista de ADMs</h1>
         <table>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Tipo</th>
-                    <th><i class="bi bi-pencil"></i></th>
-                    <th><i class="bi bi-trash"></i></th>
-
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="usuario : ${usuarios}">
-                    <td th:text="${usuario.nome}"></td>
-                    <td th:text="${usuario.email}"></td>
-                    <td th:text="${usuario.tipo}"></td>
-                    <td></td>
-                    <td></td>
+                    <th:block th:if="${usuario.tipo == 'admin'}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nome}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.tipo}"></td>
+                        <td><a th:href="@{'/editarUsuario/' + ${usuario.id}}">Editar</a></td>
+                        <td><a th:href="@{'/excluirUsuario/' + ${usuario.id}}">Excluir</a></td>
+                    </th:block>
+                </tr>
+            </tbody>
+        </table>
+    
+        <h1>Lista de Usuários Comuns</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <th:block th:if="${usuario.tipo == 'comum'}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nome}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.tipo}"></td>
+                        <td><a th:href="@{'/editarUsuarioComum/' + ${usuario.id}}">Editar</a></td>
+                        <td><a th:href="@{'/excluirUsuarioComum/' + ${usuario.id}}">Excluir</a></td>
+                    </th:block>
                 </tr>
             </tbody>
         </table>
     </div>
+    
     <div class="text-center mt-4">
         <a class="btn btn-secondary" href="/paginaInicial">Voltar</a>
     </div>
