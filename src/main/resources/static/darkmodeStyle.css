@@ -1,0 +1,16 @@
+
+    /* Adicione estilos para a classe dark-mode e para o botão em forma de lua */
+    .dark-mode {
+        background-color: black;
+        color: white;
+    }
+
+    #toggleButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }

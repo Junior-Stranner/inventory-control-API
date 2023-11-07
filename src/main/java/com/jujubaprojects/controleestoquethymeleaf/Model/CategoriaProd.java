@@ -24,7 +24,6 @@ public class CategoriaProd {
     private List<Produto>produtos;
 
 public CategoriaProd(){
-    
 }
     
 

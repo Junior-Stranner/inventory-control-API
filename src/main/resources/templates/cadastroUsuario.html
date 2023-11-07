@@ -5,10 +5,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="darkModeStyle.css">
+    <link rel="stylesheet" href="darkModeStyle.js">
+</head>
+
 </head>
 <body>
-
+    <script>
+        // Função para ativar o dark mode
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+        }
     
+        // Função para desativar o dark mode
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+        }
+    
+        // Função para alternar o dark mode
+        function toggleDarkMode() {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        }
+    
+        // Verificar a preferência do usuário no carregamento da página
+        if (localStorage.getItem("darkMode") === "enabled") {
+            enableDarkMode();
+        }
+    </script>
+
+<!-- Botão em forma de lua (ícone) -->
+<button id="toggleButton" onclick="toggleDarkMode()">
+    🌙
+</button>
     </head>
     <body>
       
@@ -68,6 +101,6 @@
                 tipoUsuarioSelect.disabled = true;
             }
         });
-    </script>
-</body>
+       </script>
+   </body>
 </html>
