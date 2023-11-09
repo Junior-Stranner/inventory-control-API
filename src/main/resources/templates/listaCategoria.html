@@ -45,23 +45,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Fornecedores</h1>
+        <h1>Lista das Categorias</h1>
         <table>
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
-                    <th>Email</th>
                     <th>Editar</th>
                     <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="fornecedor : ${fornecedores}">
-                    <td th:text="${fornecedor.id}"></td>
-                    <td th:text="${fornecedor.nome}"></td>
-                    <td><a th:href="@{'/editarFornecedor/' + ${fornecedor.id}}">Editar</a></td>
-                    <td><a th:href="@{'/excluirFornecedor/' + ${fornecedor.id}}">Excluir</a></td>
+                <tr th:each="categoria : ${categorias}">
+                    <td th:text="${categoria.id}"></td>
+                    <td th:text="${categoria.nome}"></td>
+                    <td><a th:href="@{'/editarFornecedor/' + ${categoria.id}}">Editar</a></td>
+                    <td><a th:href="@{'/excluirFornecedor/' + ${categoria.id}}">Excluir</a></td>
                 </tr>
             </tbody>
         </table>

@@ -8,48 +8,75 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
     crossorigin="anonymous">
-
-    <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css">
   <title>Página Inicial</title>
 </head>
 
 <body>
-
   <form method="POST" action="/paginaInicial">
     <div class="container">
       <h1>Bem-vindo, <span th:text="${nomeAdm}"></span>!</h1>
 
-      
+      <select class="form-select" aria-label="Default select example" id="mySelect">
+        <option selected>Listagens</option>
+        <option value="1">Lista de usuários</option>
+        <option value="2">Lista de Produtos</option>
+        <option value="3">Lista de Categorias</option>
+        <option value="4">Lista dos Fornecedores</option>
+      </select>
+
+      <script>
+        // Obtém o elemento <select> pelo ID
+        var selectElement = document.getElementById("mySelect");
+
+        // Adiciona um ouvinte de evento para o evento "change" (mudança de seleção)
+        selectElement.addEventListener("change", function() {
+          // Obtém o valor selecionado
+          var selectedValue = selectElement.value;
+
+          // Redireciona com base na seleção
+          if (selectedValue === "1") {
+            // Redireciona para a página de lista de usuários
+            window.location.href = "/listaUsuario";
+          } else if (selectedValue === "2") {
+            // Redireciona para outra página, se necessário
+            window.location.href = "/outraPagina";
+          } else if (selectedValue === "3") {
+            // Redireciona para uma terceira página, se necessário
+            window.location.href = "/listaCategoria";
+          } else if (selectedValue === "4") {
+            // Redireciona para uma quarta página, se necessário
+            window.location.href = "/listaFornecedor";
+          }
+        });
+      </script>
+
       <div class="nav-bar">
         <div>
           <h4>Usuários</h4>
-          <button class="botao-colorido"><a href="/cadastroUsuario">Cadastrar Usuário/s</a></button>
+          <a href="/cadastroUsuario" class="btn btn-primary">Cadastrar Usuário/s</a>
         </div>
         <div>
-          <h4>Tipo/s de Usuário/s</h4>
-          <button class="botao-colorido"><a href="/listaUsuario">Lista de Usuário/s</a></button>
+          <h4>Categoris</h4>
+          <a href="/cadastroCategoria" class="btn btn-primary">Cadastrar Categoria/s</a>
         </div>
         <div>
           <h4>Produtos</h4>
-          <button class="botao-colorido"><a href="/cadastroProduto">Cadastrar Produtos</a></button>
+          <a href="/cadastroProduto" class="btn btn-primary">Cadastrar Produtos</a>
         </div>
         <div>
           <h4>Fornecedores</h4>
-          <button class="botao-colorido"><a href="/cadastroFornecedor">Cadastrar Fornecedores</a></button>
-        </div>
-        <div>
-          <h4>lista de fornecedores</h4>
-          <button class="botao-colorido"><a href="/listaFornecedor">lista de fornecedores</a></button>
+          <a href="/cadastroFornecedor" class="btn btn-primary">Cadastrar Fornecedores</a>
         </div>
         <div>
           <h4>Movimentação de Produtos</h4>
-          <button class="botao-colorido"><a href="/cadastroMovimentacao">Cadastrar Movimentação Produtos</a></button>
+          <a href="/cadastroMovimentacao" class="btn btn-primary">Cadastrar Movimentação Produtos</a>
         </div>
       </div>
     </div>
-    
   </form>
+  <!-- Inclua o JavaScript do Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

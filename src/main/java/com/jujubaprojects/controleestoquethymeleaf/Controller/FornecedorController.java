@@ -1,6 +1,5 @@
 package com.jujubaprojects.controleestoquethymeleaf.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jujubaprojects.controleestoquethymeleaf.Model.Fornecedor;
 import com.jujubaprojects.controleestoquethymeleaf.Repository.FornecedorRepository;
-import com.jujubaprojects.controleestoquethymeleaf.Repository.ProdutoRepository;
 
 @Controller
 public class FornecedorController {
     
     @Autowired
     FornecedorRepository fornecedorRepository;
-    ProdutoRepository produtoRepository;
 
     @GetMapping("/cadastroFornecedor")
     public String cadastro(){
@@ -30,16 +27,8 @@ public class FornecedorController {
     }
 
     @PostMapping("/cadastroFornecedor")
-    public String salvarProduto(Fornecedor fornecedor, List<Integer>produtoId){
-
-    /*     List<Produto> produtos = new ArrayList<>();
-    //    CategoriaProd categoriaProd = new CategoriaProd();
-        for (Integer id : produtoId) {
-           produtos.add(produtoRepository.findById(id).get());
-        }
-          fornecedor.setProdutos(produtos);*/
+    public String salvarProduto(Fornecedor fornecedor){
           fornecedorRepository.save(fornecedor);
-
         return "redirect:/listaFornecedor";
 
     }
