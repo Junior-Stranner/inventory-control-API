@@ -44,31 +44,13 @@
 </button>
       
     <div class="container">
-        <h1>Cadastro de Usuário</h1>
+        <h1>Cadastro Fornecedor</h1>
 
             
-        <form action="/cadastroUsuario" method="post">
+        <form action="/cadastroFornecedor" method="post">
             <div class="form-group">
-                <label for="nome">Nome:</label>
+                <label for="nome">Nome do Fornecedor:</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
-            </div>
-            
-            <div class="form-group">
-                <label for "email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" class="form-control" id="senha" name="senha" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tipoUsuario">Tipo de Usuário:</label>
-                <select class="form-control" id="tipoUsuario" name="tipoUsuario" disabled>
-                    <option value="comum">comum</option>
-                    <option value="admin">Admin</option>
-                </select>
             </div>
             
             
@@ -84,21 +66,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-    <script>
-        document.getElementById('email').addEventListener('input', function () {
-            var emailValue = this.value;
-            var tipoUsuarioSelect = document.getElementById('tipoUsuario');
-            
-            if (emailValue.endsWith('@admin12345')) {
-                // Se o email termina com @admin12345, defina automaticamente o tipo de usuário como "Admin"
-                tipoUsuarioSelect.value = 'admin';
-                tipoUsuarioSelect.disabled = false;
-            } else {
-                // Caso contrário, defina o tipo de usuário como "Usuário" e desabilite o campo
-                tipoUsuarioSelect.value = 'comum';
-                tipoUsuarioSelect.disabled = true;
-            }
-        });
-       </script>
    </body>
 </html>

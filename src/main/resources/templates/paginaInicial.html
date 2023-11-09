@@ -15,9 +15,12 @@
 </head>
 
 <body>
+
   <form method="POST" action="/paginaInicial">
     <div class="container">
       <h1>Bem-vindo, <span th:text="${nomeAdm}"></span>!</h1>
+
+      
       <div class="nav-bar">
         <div>
           <h4>Usuários</h4>
@@ -34,6 +37,10 @@
         <div>
           <h4>Fornecedores</h4>
           <button class="botao-colorido"><a href="/cadastroFornecedor">Cadastrar Fornecedores</a></button>
+        </div>
+        <div>
+          <h4>lista de fornecedores</h4>
+          <button class="botao-colorido"><a href="/listaFornecedor">lista de fornecedores</a></button>
         </div>
         <div>
           <h4>Movimentação de Produtos</h4>

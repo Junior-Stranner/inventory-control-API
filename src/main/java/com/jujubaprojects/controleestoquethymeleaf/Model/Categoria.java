@@ -12,22 +12,23 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "fornecedores")
-public class Fornecedor {
+@Table(name = "categorias")
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
     private List<Produto>produtos;
 
-    public Fornecedor(){
-        
-    }
+public Categoria(){
 
-    public Fornecedor(int id, String nome, List<Produto> produtos) {
+}
+
+    
+    public Categoria(int id, String nome, List<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.produtos = produtos;
@@ -57,5 +58,5 @@ public class Fornecedor {
         this.produtos = produtos;
     }
 
-    
+
 }

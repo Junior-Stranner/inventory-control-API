@@ -1,8 +1,6 @@
 package com.jujubaprojects.controleestoquethymeleaf.Model;
 
 import java.util.List;
-import java.util.UUID;
-
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,31 +26,32 @@ public class Produto {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoria_id")
-    private CategoriaProd Categoria;
+    private Categoria categoria;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fornrcrdor_id")
+    @JoinColumn(name = "fornecedor_id")
     private Fornecedor fornecedor;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "produto")
-    private List<MovimentacaoProd> movimentacaoProds;
+    private List<Movimentacao> movimentacao;
 
 
     public Produto(){
         
     }
 
-
-
-    public Produto(int id, String nome, String descricao, double preco, int qntEstoque,CategoriaProd categoria, Fornecedor fornecedor) {
+    public Produto(int id, String nome, String descricao, double preco, int qntEstoque, Categoria categoria,
+            Fornecedor fornecedor, List<Movimentacao> movimentacao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.qntEstoque = qntEstoque;
-        Categoria = categoria;
+        this.categoria = categoria;
         this.fornecedor = fornecedor;
+        this.movimentacao = movimentacao;
     }
+
 
     public int getId() {
         return id;
@@ -61,6 +60,8 @@ public class Produto {
     public void setId(int id) {
         this.id = id;
     }
+
+
 
     public String getNome() {
         return nome;
@@ -86,25 +87,21 @@ public class Produto {
         this.preco = preco;
     }
 
+
     public int getQntEstoque() {
         return qntEstoque;
     }
+
 
     public void setQntEstoque(int qntEstoque) {
         this.qntEstoque = qntEstoque;
     }
 
-    public CategoriaProd getCategoria() {
-        return Categoria;
-    }
-
-    public void setCategoria(CategoriaProd categoria) {
-        Categoria = categoria;
-    }
-
     public Fornecedor getFornecedor() {
         return fornecedor;
     }
+
+
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
@@ -112,13 +109,36 @@ public class Produto {
 
 
 
+    public List<Movimentacao> getMovimentacao() {
+        return movimentacao;
+    }
+
+
+    public void setMovimentacao(List<Movimentacao> movimentacao) {
+        this.movimentacao = movimentacao;
+    }
+
+
+
     @Override
     public String toString() {
         return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
-                + ", qntEstoque=" + qntEstoque + ", Categoria=" + Categoria + ", fornecedor=" + fornecedor
-                + ", movimentacaoProds=" + movimentacaoProds + "]";
+                + ", qntEstoque=" + qntEstoque + ", Categoria=" + categoria + ", fornecedor=" + fornecedor
+                + ", movimentacao=" + movimentacao + "]";
     }
 
-    
-    
+
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+
+
 }
