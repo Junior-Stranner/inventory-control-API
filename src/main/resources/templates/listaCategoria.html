@@ -59,8 +59,8 @@
                 <tr th:each="categoria : ${categorias}">
                     <td th:text="${categoria.id}"></td>
                     <td th:text="${categoria.nome}"></td>
-                    <td><a th:href="@{'/editarFornecedor/' + ${categoria.id}}">Editar</a></td>
-                    <td><a th:href="@{'/excluirFornecedor/' + ${categoria.id}}">Excluir</a></td>
+                    <td><a th:href="@{'/editarCategoria/' + ${categoria.id}}">Editar</a></td>
+                    <td><a th:href="@{'/excluirCategoria/' + ${categoria.id}}">Excluir</a></td>
                 </tr>
             </tbody>
         </table>

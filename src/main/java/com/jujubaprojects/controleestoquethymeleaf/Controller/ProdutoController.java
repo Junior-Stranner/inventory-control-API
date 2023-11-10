@@ -24,55 +24,62 @@ public class ProdutoController {
     @Autowired
     ProdutoRepository produtoRepository;
     CategoriaRepository categoriaRepository;
-    FornecedorRepository fornecedorRepository;
+    private FornecedorRepository fornecedorRepository;
+
     MovimentacaoRepository movimentacaoProdRepository;
 
     @GetMapping("/cadastroProduto")
     public ModelAndView cadastrarProduto(){
         ModelAndView mv = new ModelAndView("cadastroProduto");
 
-       List<Categoria> categorias = categoriaRepository.findAll();
-       mv.addObject("categorias", categorias);
-
        List<Fornecedor> fornecedors = fornecedorRepository.findAll();
        mv.addObject("fornecedors", fornecedors);       
 
-       List<Movimentacao> movimentacaoProds = movimentacaoProdRepository.findAll();
-       mv.addObject("movimentacaoProds", movimentacaoProds);
+       List<Categoria> categorias = categoriaRepository.findAll();
+       mv.addObject("categorias", categorias);
 
-        return mv;
+       return mv;
 
     }
-
     @PostMapping("/cadastroProduto")
-    public String salvarProduto(Produto produto , List<Integer> categoriaId 
-     , List<Integer> fornecedorId ,List<Integer> movimentacaoId){
-
-        List<Categoria> categorias = new ArrayList<>();
-        Categoria categoria = new Categoria();
-        for (Integer id : categoriaId) {
-            categorias.add(categoriaRepository.findById(id).get());
+    public String salvarProduto(Produto produto, Categoria categoria, List<Integer> categoriaId,
+                                Fornecedor fornecedor, List<Integer> fornecedorId) {
+    try {
+                                     
+        if (categoriaId != null && !categoriaId.isEmpty()) {
+            List<Categoria> categorias = new ArrayList<>();
+            for (Integer id : categoriaId) {
+                categorias.add(categoriaRepository.findById(id).orElse(null));
+            }
+            produto.setCategoria(categoria);
         }
-        produto.setCategoria(categoria);
-        produtoRepository.save(produto);
-
-        List<Fornecedor> fornecedors = new ArrayList<>();
-        Fornecedor fornecedor = new Fornecedor();
-        for (Integer id : fornecedorId) {
-            fornecedors.add(fornecedorRepository.findById(id).get());
+    
+        if (fornecedorId != null && !fornecedorId.isEmpty()) {
+            List<Fornecedor> fornecedors = new ArrayList<>();
+            for (Integer id : fornecedorId) {
+                fornecedors.add(fornecedorRepository.findById(id).orElse(null));
+            }
+            produto.setFornecedor(fornecedor);
         }
-        produto.setFornecedor(fornecedor);
+    
         produtoRepository.save(produto);
-
-        List<Movimentacao> movimentacaos = new ArrayList<>();
-        for (Integer id : movimentacaoId) {
-            movimentacaos.add(movimentacaoProdRepository.findById(id).get());
-        }
-        produto.setMovimentacao(movimentacaos);
-        produtoRepository.save(produto);
-
+    
+    } catch (NullPointerException e) {
+        e.printStackTrace();
+        System.out.println("Objetos vazios ... ");
+        // TODO: handle exception
+    }
+       
         return "redirect:/listProduto";
+    }
+    
 
+    @GetMapping("listaProduto")
+    public ModelAndView listaProduto(){
+        ModelAndView mv = new ModelAndView("listaProduto");
+        List<Produto> produtos = produtoRepository.findAll();
+        mv.addObject("produtos", produtos);
+        return mv;
     }
 
 }

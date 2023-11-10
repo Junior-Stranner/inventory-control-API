@@ -5,9 +5,12 @@ import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -20,7 +23,7 @@ public class Fornecedor {
     private int id;
     private String nome;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+   @OneToMany(mappedBy = "fornecedor")
     private List<Produto>produtos;
 
     public Fornecedor(){

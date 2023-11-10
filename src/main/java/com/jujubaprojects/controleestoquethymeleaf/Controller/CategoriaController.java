@@ -19,9 +19,9 @@ public class CategoriaController {
     
 
     @GetMapping("/cadastroCategoria")
-    public String cadastroCategoria(){
-        return "cadastroCategoria";
-
+    public ModelAndView cadastroCategoria(){
+        ModelAndView mv = new ModelAndView("cadastroCategoria");
+       return mv ;
     }
 
     @PostMapping("/cadastroCategoria")

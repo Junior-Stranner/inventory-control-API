@@ -61,25 +61,33 @@
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao" required></textarea>
 
+        
         <label for="preco">Preço:</label>
-        <input type="number" id="preco" name="preco" step="0.01" required>
+        <input type="text" id="preco" name="preco" pattern="[0-9]+([,\.][0-9]+)?" title="Use apenas números e ponto (.) ou vírgula (,) para os decimais" required>
+        
 
         <label for="qntEstoque">Quantidade em Estoque:</label>
         <input type="number" id="qntEstoque" name="qntEstoque" required>
 
-        <label for="categoria">Categoria:</label>
-        <select id="categoria" name="categoria" required>
-            <option value="eletronico">Eletrônico</option>
-            <option value="vestuario">Vestuário</option>
-            <option value="alimento">Alimento</option>
-            <!-- Adicione outras opções de categoria conforme necessário -->
-        </select>
+        <br>
+        <label for="formGroupExampleInput6"><b>Categoria</b></label>
+       </br>
 
-        <label for="fornecedor">Fornecedor:</label>
-        <input type="text" id="fornecedor" name="fornecedor" required>
+    <select class="form-control" id="dropDownList" name="categoria">
+        <option value="null" selected>Selecione</option>
+        <option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.nome}">
+        </option>
+    </select>
 
-        <label for="movimentacao">Movimentação do Produto:</label>
-        <textarea id="movimentacao" name="movimentacao"></textarea>
+        <br>
+        <label for="formGroupExampleInput6"><b>fornecedor</b></label>
+       </br>
+
+    <select class="form-control" id="dropDownList" name="fornecedor">
+        <option value="null" selected>Selecione</option>
+        <option th:each="fornecedor: ${fornecedores}" th:value="${fornecedor.id}" th:text="${fornecedor.nome}">
+        </option>
+    </select>
 
         <input type="submit" value="Cadastrar Produto">
     </form>

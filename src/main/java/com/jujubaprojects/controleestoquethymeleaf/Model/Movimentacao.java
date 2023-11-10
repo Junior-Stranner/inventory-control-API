@@ -25,7 +25,6 @@ public class Movimentacao {
     private int nota;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "produto_id")
     private Produto produto;
 
     public Movimentacao(){
