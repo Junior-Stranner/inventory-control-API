@@ -93,7 +93,7 @@
                         <td th:text="${usuario.nome}"></td>
                         <td th:text="${usuario.email}"></td>
                         <td th:text="${usuario.tipo}"></td>
-                        <td><a th:href="@{'/editarUsuarioComum/' + ${usuario.id}}">Editar</a></td>
+                        <td><a th:href="@{'/editarUsuarioComum/' + ${usuario.id}}" class="btn btn-warning">Editar</a></td>
                         <td><a th:href="@{'/excluirUsuarioComum/' + ${usuario.id}}">Excluir</a></td>
                     </th:block>
                 </tr>

@@ -1,7 +1,6 @@
 package com.jujubaprojects.controleestoquethymeleaf.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import com.jujubaprojects.controleestoquethymeleaf.Repository.UsuarioRepository;
 import ch.qos.logback.core.model.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -82,11 +82,20 @@ public class UsuarioController {
     @GetMapping("/editarUsuario/{id}")
     public ModelAndView editar(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("cadastroUsuario");
-        Usuario usuario = usuarioRepository.findById(id).get();
+       Usuario usuario = usuarioRepository.findById(id).get();
         mv.addObject("usuario", usuario);
         return mv;
     
    }
+
+   @PostMapping("/salvarEdicaoUsuario")
+public String salvarEdicaoUsuario(@ModelAttribute Usuario usuarioEditado) {
+    // Lógica para salvar as alterações no banco de dados
+    Usuario usuario = usuarioRepository.save(usuarioEditado);
+    return "redirect:/listaUsuarios"; // Substitua pelo redirecionamento apropriado
+}
+
+
 
    @GetMapping("/excluirUsuario/{id}")
    public String excluir(@PathVariable("id") int id) {
