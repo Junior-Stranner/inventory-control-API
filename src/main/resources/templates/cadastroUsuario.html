@@ -11,29 +11,34 @@
     <link rel="shortcut icon" href="img/pilha-de-livros.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
         rel="stylesheet">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!-- FontAwesome CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="darkModeStyle.css">
-        <link rel="stylesheet" href="darkModeStyle.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="darkModeStyle.css">
     <title>CADASTRO</title>
 </head>
 
 <body>
 
+   
+
+    <!-- Botão em forma de lua (ícone) -->
+    <button id="toggleButton" onclick="toggleDarkMode()">
+        🌙
+    </button>
     <script>
         // Função para ativar o dark mode
         function enableDarkMode() {
             document.body.classList.add("dark-mode");
             localStorage.setItem("darkMode", "enabled");
         }
-    
+
         // Função para desativar o dark mode
         function disableDarkMode() {
             document.body.classList.remove("dark-mode");
             localStorage.setItem("darkMode", "disabled");
         }
-    
+
         // Função para alternar o dark mode
         function toggleDarkMode() {
             if (document.body.classList.contains("dark-mode")) {
@@ -42,83 +47,76 @@
                 enableDarkMode();
             }
         }
-    
+
         // Verificar a preferência do usuário no carregamento da página
         if (localStorage.getItem("darkMode") === "enabled") {
             enableDarkMode();
         }
     </script>
+    <div class="container">
+        <div id="box-cadastro">
+            <img id="background-img-cadastro" src="../cadastro.jpg" alt="Minha Figura">
+            <div id="cadastro-usuario">
+                <form method="post" action="/cadastroUsuario">
+                    <div th:if="${usuario}">
+                        <input type="hidden" name="id" th:value="${usuario?.id}">
+                    </div>
+                    <h1 style="font-weight: 800;">Cadastro de Usuário</h1>
 
-<!-- Botão em forma de lua (ícone) -->
-<button id="toggleButton" onclick="toggleDarkMode()">
-    🌙
-</button>
+                    <label for="nome">Nome:</label>
+                    <input class="input-dados" type="text" placeholder="Digite Nome" name="nome"
+                        th:value="${usuario?.nome}" required>
+                    <p></p>
 
-<div class="container">
-    <div id="box-cadastro">
-        <img id="background-img-cadastro" src="../cadastro.jpg" alt="Minha Figura">
-        <div id="cadastro-usuario">
-            <form method="post" action="/cadastroUsuario">
-                <div th:if="${usuario}">
-                    <input type="hidden" name="id" th:value="${usuario?.id}">
-                </div>
-                <h1 style="font-weight: 800;">Cadastro de Usuário</h1>
+                    <label for="email">Email:</label>
+                    <input class="input-dados" type="email" placeholder="Digite e-mail" name="email"
+                        th:value="${usuario?.email}" required>
+                    <p></p>
 
-                <label for="nome">Nome:</label>
-                <input class="input-dados" type="text" placeholder="Digite Nome" name="nome"
-                    th:value="${usuario?.nome}"required>
-                <p></p>
-
-                <label for="email">Email:</label>
-                <input class="input-dados" type="email" placeholder="Digite e-mail" name="email"
-                    th:value="${usuario?.email}"required>
-                <p></p>
-
-                <label for="senha">Senha:</label>
-                <input class="input-dados" type="password" placeholder="Crie uma Senha" name="senha"
-                    th:value="${usuario?.senha}" required>
+                    <label for="senha">Senha:</label>
+                    <input class="input-dados" type="password" placeholder="Crie uma Senha" name="senha"
+                        th:value="${usuario?.senha}" required>
 
                     <div class="form-group">
                         <label for="tipoUsuario">Tipo de Usuário:</label>
-                        <select class="form-control" id="tipoUsuario" name="tipoUsuario" disabled>
-                            <option value="comum">comum</option>
+                        <select class="form-control" id="tipoUsuario" name="tipoUsuario" disabled readonly>
+                            <option value="comum">Comum</option>
                             <option value="admin">Admin</option>
                         </select>
                     </div>
-                    
-                <p></p>
-                <div th:unless="${usuario}">
-                    <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
-                </div>
 
-                <div th:if="${usuario}">
-                    <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
-                </div>
-               
-                <p></p>
+                    <p></p>
+                    <div th:unless="${usuario}">
+                        <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
 
-                <span><a href="/loginUsuario">Já tenho uma conta</a></span>
-            </form>
+                    <div th:if="${usuario}">
+                        <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
+                    </div>
+
+                    <p></p>
+
+                    <span><a href="/loginUsuario">Já tenho uma conta</a></span>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
-    </form>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
     <script>
+        // Evento ao digitar no campo de e-mail
         document.getElementById('email').addEventListener('input', function () {
             var emailValue = this.value;
             var tipoUsuarioSelect = document.getElementById('tipoUsuario');
-            
+
+            // Verificar se o e-mail termina com '@admin12345'
             if (emailValue.endsWith('@admin12345')) {
-                // Se o email termina com @admin12345, defina automaticamente o tipo de usuário como "Admin"
+                // Se o email termina com '@admin12345', defina automaticamente o tipo de usuário como "Admin"
                 tipoUsuarioSelect.value = 'admin';
                 tipoUsuarioSelect.disabled = false;
             } else {
@@ -127,7 +125,7 @@
                 tipoUsuarioSelect.disabled = true;
             }
         });
-       </script>
+    </script>
 </body>
 
 </html>

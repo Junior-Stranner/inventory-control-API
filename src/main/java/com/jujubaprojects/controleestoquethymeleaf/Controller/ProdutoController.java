@@ -32,9 +32,11 @@ public class ProdutoController {
     public ModelAndView cadastrarProduto(){
         ModelAndView mv = new ModelAndView("cadastroProduto");
 
+        Fornecedor fornecedor = new Fornecedor();
        List<Fornecedor> fornecedors = fornecedorRepository.findAll();
        mv.addObject("fornecedors", fornecedors);       
 
+       Categoria gategoria = new Categoria();
        List<Categoria> categorias = categoriaRepository.findAll();
        mv.addObject("categorias", categorias);
 

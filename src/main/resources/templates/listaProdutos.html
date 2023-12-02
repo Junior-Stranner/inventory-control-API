@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Fornecedores</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-FfGCE5X/gD7ZXCJR/D/P7nJk6eOxBrVFXb+ftW1xKKbXz9eT3E+gzBhNh8NqmCAJ"
+        crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Fornecedores</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>preço</th>
+                    <th>Quantidade no Estouq</th>
+                    <th>Categoria</th>
+                    <th>Fornecedor</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="Produto : ${Produtos}">
+                    <td th:text="${Produto.id}"></td>
+                    <td th:text="${Produto.nome}"></td>
+                    <td th:text="${Produto.descricao}"></td>
+                    <td th:text="${Produto.preco}"></td>
+                    <td th:text="${Produto.qntEstoque}"></td>
+                    <td th:text="${Produto.categoria}"></td>
+                    <td th:text="${Produto.fornecedor}"></td>
+                    <td><a th:href="@{'/editarFornecedor/' + ${fornecedor.id}}">Editar</a></td>
+                    <td><a th:href="@{'/excluirFornecedor/' + ${fornecedor.id}}">Excluir</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a class="btn btn-secondary" href="/paginaInicial">Voltar</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-2dVYUilz4U6F5v9v8F4Z8qCq3uAq02t5A/3+xlzUlmZgtwq5mgF5I5zhIRqzZjxH"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+        integrity="sha384-oVqqnaiN/G6kuWxIbs1oljsGt9y94e3OvRM4fGJcGSu5bLkRUlTQPS/syyiTrwkU"
+        crossorigin="anonymous"></script>
+</body>
+</html>
